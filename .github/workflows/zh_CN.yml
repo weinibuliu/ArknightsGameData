@@ -1,8 +1,14 @@
 on:
     workflow_call:
+      inputs:
+        timestamp:
+          required: true
+          type: string
+
       outputs:
         release:
           value: ${{ jobs.Build.outputs.RELEASE }}
+
 jobs:
     Build:
         runs-on: ubuntu-latest
