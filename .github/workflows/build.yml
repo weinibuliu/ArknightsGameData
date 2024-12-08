@@ -42,7 +42,7 @@ jobs:
 
     en_US:
         needs: [meta,zh_CN]
-        uses: ./.github/workflows/youstar.yml
+        uses: ./.github/workflows/yostar.yml
         with:
           lang: en_US
           timestamp: ${{ needs.meta.outputs.timestamp }}
