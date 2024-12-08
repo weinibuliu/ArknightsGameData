@@ -46,7 +46,7 @@ jobs:
               mkdir version/${{ env.LANG }} -p
               python build.py ${{ env.LANG }}
 
-        - name: Upload Release Assets
+        - name: Upload Release Artifact
           uses: actions/upload-artifact@v4.4.1
           with:
             name: ${{ env.LANG }}_${{ inputs.timestamp }}
