@@ -16,7 +16,11 @@ avatar.run(lang)
 char_classisy.run()
 
 # mkdir
-for dir in [Path(cwd, "version"),Path(cwd, f"version/{lang}"),Path(cwd, f"vesion/{lang}/version")]
+for dir in [
+    Path(cwd, "version"),
+    Path(cwd, f"version/{lang}"),
+    Path(cwd, f"vesion/{lang}/version"),
+]:
     if not dir.exists():
         dir.mkdir()
 
