@@ -32,13 +32,13 @@ jobs:
               python timestamp.py
 
         outputs:
-          timestamp: "0"
+          timestamp: ${{ env.TIMESTAMP}}
 
     zh_CN:
         needs: meta
         uses: ./.github/workflows/zh_CN.yml
         with:
-          timestamp: ${{ meta.outputs.timestamp }}
+          time: ${{ needs.meta.outputs.timestamp }}
 
     Release:
         needs: zh_CN
