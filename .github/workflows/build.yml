@@ -38,7 +38,7 @@ jobs:
         needs: meta
         uses: ./.github/workflows/zh_CN.yml
         with:
-          timestamp: ${{ needs.meta.outputs.timestamp }}
+          timestamp: ${{ meta.outputs.timestamp }}
 
     Release:
         needs: zh_CN
