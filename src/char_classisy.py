@@ -13,8 +13,18 @@ def _character() -> dict[str, dict]:
     return chars
 
 
-def _rarity() -> dict[str, dict]:
-    rarity_dict = {"0": {}, "1": {}, "2": {}, "3": {}, "4": {}, "5": {}}
+def _rarity(lang: str) -> dict[str, dict]:
+    if lang == "zh_CN":
+        rarity_dict = {"0": {}, "1": {}, "2": {}, "3": {}, "4": {}, "5": {}}
+    else:
+        rarity_dict = {
+            "TIER_1": {},
+            "TIER_2": {},
+            "TIER_3": {},
+            "TIER_4": {},
+            "TIER_5": {},
+            "TIER_6": {},
+        }
     return rarity_dict
 
 
@@ -56,9 +66,9 @@ def profession(_chars: dict[str, dict]):
     print(f"Done: Profession classification ({num})")
 
 
-def rarity(_chars: dict[str, dict]):
+def rarity(_chars: dict[str, dict], lang: str):
     num = 0
-    rarity_dict = _rarity()
+    rarity_dict = _rarity(lang)
     for char in _chars.items():
         num += 1
         char_info = char[-1]
@@ -73,10 +83,10 @@ def rarity(_chars: dict[str, dict]):
     print(f"Done: Rarity classification ({num})")
 
 
-def run():
+def run(lang: str):
     _chars = _character()
     profession(_chars)
-    rarity(_chars)
+    rarity(_chars, lang)
 
 
 if __name__ == "__main__":
