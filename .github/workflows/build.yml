@@ -6,10 +6,9 @@ on:
       - "**"
 
       paths:
-        - ".github/workflows/build.yml"
+        - ".github/workflows/**"
         - "src/**"
         - "build.py"
-        - "version"
 
 
     schedule:
