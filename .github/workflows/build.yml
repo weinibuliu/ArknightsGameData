@@ -16,7 +16,7 @@ on:
       - cron: '30 2 * * *'
 
 jobs:
-    zh_-CN:
+    zh_CN:
         uses: ./.github/workflows/zh_CN.yml
 
     Release:
