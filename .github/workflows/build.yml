@@ -40,6 +40,13 @@ jobs:
         with:
           timestamp: ${{ needs.meta.outputs.timestamp }}
 
+    en_US:
+        needs: [meta,zh_CN]
+        uses: ./.github/workflows/youstar.yml
+        with:
+          lang: en_US
+          timestamp: ${{ needs.meta.outputs.timestamp }}
+
     Release:
         needs: [meta,zh_CN]
         runs-on: ubuntu-latest

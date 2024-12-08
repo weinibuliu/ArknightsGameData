@@ -1,6 +1,9 @@
 on:
     workflow_call:
       inputs:
+        lang:
+          required: true
+          type: string
         timestamp:
           required: true
           type: string
@@ -12,8 +15,6 @@ on:
 jobs:
     Build:
         runs-on: ubuntu-latest
-        env:
-          LANG: zh_CN
         steps:
         - name: Checkout Code
           uses: actions/checkout@v4.2.1
@@ -21,18 +22,16 @@ jobs:
         - name: Checkout ArknightsGameResource
           uses: actions/checkout@v4.2.1
           with:
-            repository: yuanyan3060/ArknightsGameResource
+            repository: Kengxxiao/ArknightsGameData_YoStar
             ref: main
-            path: cache/${{ env.LANG }}
+            path: cache/${{ inputs.lang }}
             sparse-checkout: |
-              avatar
-              gamedata/excel/character_table.json
-              version
+              en_US/gamedata/excel/character_table.json
 
         - name: Set Timezone
           uses: szenius/set-timezone@v1.1
           with:
-            timezoneLinux: 'Asia/Shanghai'
+            timezoneLinux: 'America/New_York'
 
         - name: Setup Python
           uses: actions/setup-python@v5.2.0
@@ -43,20 +42,13 @@ jobs:
           run: |
               pip install --upgrade pip
               pip install -r requirements.txt
-              mkdir version/${{ env.LANG }} -p
-              python build.py ${{ env.LANG }}
-
-        - name: Upload Avatar Artifact
-          uses: actions/upload-artifact@v4.4.1
-          with:
-            name: avatar_${{ inputs.timestamp }}
-            path: |
-              build/avatar/*
+              mkdir version/${{ inputs.lang }} -p
+              python build.py ${{ inputs.lang }}
 
         - name: Upload Release Artifact
           uses: actions/upload-artifact@v4.4.1
           with:
-            name: ${{ env.LANG }}_${{ inputs.timestamp }}
+            name: ${{ inputs.lang }}_${{ inputs.timestamp }}
             path: |
               build/*
 
@@ -66,10 +58,10 @@ jobs:
           with:
             author_name: github-actions
             author_email: github-actions[bot]@users.noreply.github.com
-            message: '[${{ env.LANG }}] ${{ env.VER }}'
-            add: 'version/${{ env.LANG }}/version'
+            message: '[${{ inputs.lang }}] ${{ env.VER }}'
+            add: 'version/${{ inputs.lang }}/version'
             tag_push: '--force'
 
         outputs:
           release: ${{ env.RELEASE }}
-          filename: ${{ env.LANG }}_${{ inputs.timestamp }}
+          filename: ${{ inputs.lang }}_${{ inputs.timestamp }}
