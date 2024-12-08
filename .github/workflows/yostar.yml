@@ -24,7 +24,7 @@ jobs:
           with:
             repository: Kengxxiao/ArknightsGameData_YoStar
             ref: main
-            path: cache/${{ inputs.lang }}
+            path: cache
             sparse-checkout: |
               en_US/gamedata/excel/character_table.json
 

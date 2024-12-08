@@ -12,8 +12,6 @@ on:
 jobs:
     Build:
         runs-on: ubuntu-latest
-        env:
-          LANG: zh_CN
         steps:
         - name: Checkout Code
           uses: actions/checkout@v4.2.1
@@ -23,7 +21,7 @@ jobs:
           with:
             repository: yuanyan3060/ArknightsGameResource
             ref: main
-            path: cache/${{ env.LANG }}
+            path: cache/zh_CN
             sparse-checkout: |
               avatar
               gamedata/excel/character_table.json
@@ -43,8 +41,8 @@ jobs:
           run: |
               pip install --upgrade pip
               pip install -r requirements.txt
-              mkdir version/${{ env.LANG }} -p
-              python build.py ${{ env.LANG }}
+              mkdir version/zh_CN -p
+              python build.py zh_CN
 
         - name: Upload Avatar Artifact
           uses: actions/upload-artifact@v4.4.1
@@ -56,7 +54,7 @@ jobs:
         - name: Upload Release Artifact
           uses: actions/upload-artifact@v4.4.1
           with:
-            name: ${{ env.LANG }}_${{ inputs.timestamp }}
+            name: zh_CN_${{ inputs.timestamp }}
             path: |
               build/*
 
@@ -66,10 +64,10 @@ jobs:
           with:
             author_name: github-actions
             author_email: github-actions[bot]@users.noreply.github.com
-            message: '[${{ env.LANG }}] ${{ env.VER }}'
-            add: 'version/${{ env.LANG }}/version'
+            message: '[zh_CN] ${{ env.VER }}'
+            add: 'version/zh_CN/version'
             tag_push: '--force'
 
         outputs:
           release: ${{ env.RELEASE }}
-          filename: ${{ env.LANG }}_${{ inputs.timestamp }}
+          filename: zh_CN_${{ inputs.timestamp }}
