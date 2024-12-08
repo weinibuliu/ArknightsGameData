@@ -41,7 +41,7 @@ jobs:
           timestamp: ${{ needs.meta.outputs.timestamp }}
 
     Release:
-        needs: zh_CN
+        needs: [meta,zh_CN]
         runs-on: ubuntu-latest
         if: ${{ needs.zh_CN.outputs.release == 'true' }}
         steps:
@@ -53,14 +53,7 @@ jobs:
           with:
             path: build
 
-        - name: Create Release Zip
-          run: |
-            cd build
-            cp version ..
-            zip -r ArknightsGameData.zip .
-
         - name: Create Release
           uses: softprops/action-gh-release@v2.0.8
           with:
-            files: build/ArknightsGameData.zip
-            tag_name: ${{ needs.zh_CN.outputs.version }}
+            tag_name: ${{ needs.meta.outputs.timestamp }}
