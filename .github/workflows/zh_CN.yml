@@ -38,10 +38,9 @@ jobs:
 
         - name: Run build.py
           run: |
-              echo "BUILT_LANG=zh_CN" >> "$GITHUB_ENV"
               pip install --upgrade pip
               pip install -r requirements.txt
-              python build.py
+              python build.py zh_CN
 
         - name: Upload Avatar Assets
           uses: actions/upload-artifact@v4.4.1

@@ -1,16 +1,16 @@
 import os
+import sys
 import time
 import shutil
 import subprocess
 from pathlib import Path
 
-from github import Github
 
 from src import avatar, character, char_classisy
 from src import cwd, build_path, cache_path
 
-print(os.environ)
-lang = os.environ.get("BUILT_LANG")
+lang = sys.argv[1]
+
 character.run(lang)
 avatar.run(lang)
 char_classisy.run(lang)
