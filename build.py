@@ -16,9 +16,9 @@ avatar.run(lang)
 char_classisy.run()
 
 # mkdir
-Path(cwd, "version").mkdir(exist_ok=True)
-Path(cwd, f"version/{lang}").mkdir(exist_ok=True)
-Path(cwd, f"vesion/{lang}//version").mkdir(exist_ok=True)
+for dir in [Path(cwd, "version"),Path(cwd, f"version/{lang}"),Path(cwd, f"vesion/{lang}/version")]
+    if not dir.exists():
+        dir.mkdir()
 
 # 写入版本信息
 if lang == "zh_CN":
