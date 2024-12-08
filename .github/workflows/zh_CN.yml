@@ -42,26 +42,10 @@ jobs:
               pip install -r requirements.txt
               python build.py zh_CN
 
-        - name: Upload Avatar Assets
-          uses: actions/upload-artifact@v4.4.1
-          with:
-            name: Avatar_${{ env.VERSION }}
-            path: |
-              build/version
-              build/avatar/*
-
-        - name: Upload Character Assets
-          uses: actions/upload-artifact@v4.4.1
-          with:
-            name: Charater_${{ env.VERSION }}
-            path: |
-              build/version
-              build/character_table.json
-
         - name: Upload Release Assets
           uses: actions/upload-artifact@v4.4.1
           with:
-            name: Release_${{ env.VERSION }}
+            name: zh_CN${{ env.VERSION }}
             path: |
               build/*
               !build/character_table_full.json
