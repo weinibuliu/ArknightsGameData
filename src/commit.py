@@ -22,8 +22,10 @@ def get_commit_msg(lang: str) -> str:
             return msg
 
 
-def get_version(lang: str) -> str:
+def get_version(lang: str) -> str | None:
     msg = get_commit_msg(lang)
+    if msg is None:
+        return
     ver = msg.split("Data:")[-1]
     return ver
 

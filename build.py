@@ -20,8 +20,7 @@ else:
     print("Skip to get avatar")
 
 # 写入版本信息
-existing_version = None
-current_version = None
+ver = version = existing_version = current_version = None
 existing_version_path = Path(cwd, f"version/{lang}/version")
 
 if lang == "zh_CN":
@@ -37,8 +36,10 @@ with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
             existing_version = ev.readline().replace("\n", "")
     print(f"Existing Version: {existing_version}")
 
-    ver = current_version.split("-")
-    version = f"{ver[0]}{ver[1]}{ver[2]}{ver[3]}{ver[4]}{ver[5]}"
+    if current_version is not None:
+        ver = current_version.split("-")
+        version = f"{ver[0]}{ver[1]}{ver[2]}{ver[3]}{ver[4]}{ver[5]}"
+
     built_time = time.strftime("%Y-%m-%d %H:%M:%S")
     built_timestamp = int(time.mktime(time.strptime(built_time, "%Y-%m-%d %H:%M:%S")))
 
@@ -53,7 +54,7 @@ shutil.copyfile(Path(build_path, "version"), existing_version_path)
 if os.environ.get("CI"):
     subprocess.check_call(f'echo VER={current_version} >> "$GITHUB_ENV"', shell=True)
     print(f"VER = {current_version}")
-    if current_version != existing_version:
+    if current_version is not None and current_version != existing_version:
         subprocess.check_call(f'echo RELEASE=true >> "$GITHUB_ENV"', shell=True)
         print("env.RELEASE = true")
     else:
