@@ -19,20 +19,20 @@ jobs:
     meta:
         runs-on: ubuntu-latest
         steps:
-          - name: Checkout Code
-            uses: actions/checkout@v4.2.1
+        - name: Checkout Code
+          uses: actions/checkout@v4.2.1
 
-          - name: Setup Python
-            uses: actions/setup-python@v5.2.0
-            with:
-              python-version: '3.12'
+        - name: Setup Python
+          uses: actions/setup-python@v5.2.0
+          with:
+            python-version: '3.12'
 
-          - name: Run timestamp.py
-            run: |
-              python timestamp.py
+        - name: Run timestamp.py
+          run: |
+            python timestamp.py
 
-          outputs:
-            timestamp: ${{ env. TIMESTAMP }}
+        outputs:
+          timestamp: ${{ env. TIMESTAMP }}
 
     zh_CN:
         needs: meta
@@ -45,22 +45,22 @@ jobs:
         runs-on: ubuntu-latest
         if: ${{ needs.zh_CN.outputs.release == 'true' }}
         steps:
-          - name: Checkout Code
-            uses: actions/checkout@v4.2.1
+        - name: Checkout Code
+          uses: actions/checkout@v4.2.1
 
-          - name: Download Release Assets
-            uses: actions/download-artifact@v4.1.8
-            with:
-              path: build
+        - name: Download Release Assets
+          uses: actions/download-artifact@v4.1.8
+          with:
+            path: build
 
-          - name: Create Release Zip
-            run: |
-              cd build
-              cp version ..
-              zip -r ArknightsGameData.zip .
+        - name: Create Release Zip
+          run: |
+            cd build
+            cp version ..
+            zip -r ArknightsGameData.zip .
 
-          - name: Create Release
-            uses: softprops/action-gh-release@v2.0.8
-            with:
-              files: build/ArknightsGameData.zip
-              tag_name: ${{ needs.zh_CN.outputs.version }}
+        - name: Create Release
+          uses: softprops/action-gh-release@v2.0.8
+          with:
+            files: build/ArknightsGameData.zip
+            tag_name: ${{ needs.zh_CN.outputs.version }}
