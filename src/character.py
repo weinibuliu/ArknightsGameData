@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 
-def run(lang: str = "zh_CN"):
+def run(lang: str):
     cache_path = Path(Path.cwd(), "cache", lang)
     build_path = Path(Path.cwd(), "build")
 

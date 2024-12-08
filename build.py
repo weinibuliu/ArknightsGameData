@@ -11,13 +11,12 @@ from src import cwd, build_path, cache_path
 
 lang = sys.argv[1]
 
+character.run(lang)
+char_classisy.run(lang)
 if lang == "zh_CN":
     avatar.run(lang)
 else:
     print("Skip to get avatar")
-character.run(lang)
-char_classisy.run(lang)
-
 
 # 写入版本信息
 with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
