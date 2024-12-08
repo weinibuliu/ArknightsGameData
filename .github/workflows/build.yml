@@ -52,7 +52,10 @@ jobs:
           uses: actions/download-artifact@v4
           with:
             path: assets
-        - name: Check Assets
-          run: |
-            cd assets
-            ls
+        - name: Create Release
+          uses: actions/download-artifact@v4
+          with:
+            tag_name: ${{ needs.meta.outputs.timestamp }}
+            make_latest: true
+            files: |
+              ${{ needs.zh_CN.outputs.filename }}

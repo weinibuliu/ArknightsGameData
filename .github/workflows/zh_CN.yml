@@ -54,5 +54,15 @@ jobs:
               build/*
               !build/character_table_full.json
 
+        - name: Commit Version
+          uses: EndBug/add-and-commit@v9.1.4
+          with:
+            author_name: github-actions
+            author_email: github-actions[bot]@users.noreply.github.com
+            message: '[CH UPDATE]'
+            add: 'version/${{ env.LANG }}/version'
+            tag_push: '--force'
+
         outputs:
           release: ${{ env.RELEASE }}
+          filename: ${{ env.LANG }}_${{ inputs.timestamp }}
