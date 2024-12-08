@@ -48,8 +48,8 @@ else:
 
 # 写入 GITHUB ENV
 if os.environ.get("CI"):
-    subprocess.check_call(f'echo VERSION={version} >> "$GITHUB_ENV"', shell=True)
-    print(f"VERSION = {version}")
+    subprocess.check_call(f'echo VER={current_version} >> "$GITHUB_ENV"', shell=True)
+    print(f"VER = {current_version}")
     if current_version != existing_version:
         subprocess.check_call(f'echo RELEASE=true >> "$GITHUB_ENV"', shell=True)
         print("env.RELEASE = true")

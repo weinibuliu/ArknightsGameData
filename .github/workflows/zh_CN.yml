@@ -59,7 +59,7 @@ jobs:
           with:
             author_name: github-actions
             author_email: github-actions[bot]@users.noreply.github.com
-            message: '[CH UPDATE]'
+            message: '[${{ env.LANG }}] ${{ env.VER }}'
             add: 'version/${{ env.LANG }}/version'
             tag_push: '--force'
 
