@@ -29,10 +29,10 @@ jobs:
 
           - name: Run timestamp.py
             run: |
-              echo "TIMESTAMP=$(date)">> "$GITHUB_ENV"
+              python timestamp.py
 
-        outputs:
-          timestamp: ${{ env.TIMESTAMP }}
+          outputs:
+            timestamp: ${{ env. TIMESTAMP }}
 
     zh_CN:
         needs: meta
