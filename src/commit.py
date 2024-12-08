@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from github import Github
 
 until = datetime.now()
-since = until - timedelta(7)
+since = until - timedelta(30)
 
 repo = Github().get_repo("Kengxxiao/ArknightsGameData_YoStar")
 
