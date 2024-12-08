@@ -24,7 +24,7 @@ if lang == "zh_CN":
                 existing_version = ev.readline().replace("\n", "")
         print(f"Existing Version: {existing_version}")
 
-        with open(f"{cache_path}/version", "r", encoding="utf-8") as cv:
+        with open(f"{cache_path}/{lang}/version", "r", encoding="utf-8") as cv:
             current_version = cv.readline().replace("\n", "")
             print(f"Current Version: {current_version}")
 
