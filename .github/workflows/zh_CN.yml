@@ -3,9 +3,6 @@ on:
       outputs:
         release:
           value: ${{ jobs.Build.outputs.RELEASE }}
-        version:
-          value: ${{ jobs.Build.outputs.VERSION }}
-
 jobs:
     Build:
         runs-on: ubuntu-latest

@@ -41,8 +41,8 @@ jobs:
           timestamp: ${{ needs.meta.outputs.timestamp }}
 
     Release:
-        runs-on: ubuntu-latest
         needs: zh_CN
+        runs-on: ubuntu-latest
         if: ${{ needs.zh_CN.outputs.release == 'true' }}
         steps:
           - name: Checkout Code
