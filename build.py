@@ -20,6 +20,7 @@ if lang == "zh_CN":
     with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
         existing_version = None
         existing_version_path = Path(cwd, f"version/{lang}/version")
+        existing_version_path.parent.mkdir()
         if existing_version_path.exists():
             with open(existing_version_path, "r", encoding="utf-8") as ev:
                 existing_version = ev.readline().replace("\n", "")
