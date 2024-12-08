@@ -24,29 +24,28 @@ existing_version = None
 current_version = None
 existing_version_path = Path(cwd, f"version/{lang}/version")
 
-with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
-    if existing_version_path.exists():
-        with open(existing_version_path, "r", encoding="utf-8") as ev:
-            existing_version = ev.readline().replace("\n", "")
-    print(f"Existing Version: {existing_version}")
-
 if lang == "zh_CN":
     with open(f"{cache_path}/{lang}/version", "r", encoding="utf-8") as cv:
         current_version = cv.readline().replace("\n", "")
         print(f"Current Version: {current_version}")
 else:
     current_version = get_version(lang)
-    print(f"Current Version: {current_version}")
 
-ver = current_version.split("-")
-version = f"{ver[0]}{ver[1]}{ver[2]}{ver[3]}{ver[4]}{ver[5]}"
+with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
+    if existing_version_path.exists():
+        with open(existing_version_path, "r", encoding="utf-8") as ev:
+            existing_version = ev.readline().replace("\n", "")
+    print(f"Existing Version: {existing_version}")
 
-built_time = time.strftime("%Y-%m-%d %H:%M:%S")
-built_timestamp = int(time.mktime(time.strptime(built_time, "%Y-%m-%d %H:%M:%S")))
-vs.write(f"{current_version}\n")
-vs.write(f"{version}\n")
-vs.write(f"built_time: {built_time}\n")
-vs.write(f"built_timestamp: {built_timestamp}")
+    ver = current_version.split("-")
+    version = f"{ver[0]}{ver[1]}{ver[2]}{ver[3]}{ver[4]}{ver[5]}"
+    built_time = time.strftime("%Y-%m-%d %H:%M:%S")
+    built_timestamp = int(time.mktime(time.strptime(built_time, "%Y-%m-%d %H:%M:%S")))
+
+    vs.write(f"{current_version}\n")
+    vs.write(f"{version}\n")
+    vs.write(f"built_time: {built_time}\n")
+    vs.write(f"built_timestamp: {built_timestamp}")
 
 shutil.copyfile(Path(build_path, "version"), existing_version_path)
 
