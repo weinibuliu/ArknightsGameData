@@ -17,9 +17,10 @@ The repository will run the workflow at 10:30(UTC+8) and 16:30(UTC+8) to detect 
 The selected files/folders will be included in **[Release](https://github.com/weinibuliu/ArknightsGameData/releases)**. For other files, please go to **[Github Action](https://github.com/weinibuliu/ArknightsGameData/actions)** to get them.
 
 - [x] version
-- [x] avatar/ (干员头像)
+- [x] avatar/** (干员头像)
 - [x] character_table.json （干员信息）
-- [ ] character_table__full.json （干员信息_完整版）
+- [x] char_classisy/** (经过分类的干员信息)
+- [ ] character_table_full.json （干员信息_完整版）
 
 ## 数据来源 | Data Source
 - **[ArknightsGameResource](https://github.com/yuanyan3060/ArknightsGameResource)**
