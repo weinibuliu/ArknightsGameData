@@ -18,10 +18,11 @@ on:
 jobs:
     zh_-CN:
         uses: ./.github/workflows/zh_CN.yml
+
     Release:
         runs-on: ubuntu-latest
-        needs: Build
-        if: ${{ needs.Build.outputs.release == 'true' }}
+        needs: zh_CN
+        if: ${{ needs.zh_CN.outputs.release == 'true' }}
         steps:
           - name: Checkout Code
             uses: actions/checkout@v4.2.1
@@ -29,7 +30,7 @@ jobs:
           - name: Download Release Assets
             uses: actions/download-artifact@v4.1.8
             with:
-              name: Release_${{ needs.Build.outputs.version }}
+              name: Release_${{ needs.zh_CN.outputs.version }}
               path: build
 
           - name: Create Release Zip
@@ -51,4 +52,4 @@ jobs:
             uses: softprops/action-gh-release@v2.0.8
             with:
               files: build/ArknightsGameData.zip
-              tag_name: ${{ needs.Build.outputs.version }}
+              tag_name: ${{ needs.zh_CN.outputs.version }}
