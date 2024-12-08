@@ -32,7 +32,7 @@ jobs:
             python timestamp.py
 
         outputs:
-          timestamp: ${{ env. TIMESTAMP }}
+          timestamp: "112"
 
     zh_CN:
         needs: meta
