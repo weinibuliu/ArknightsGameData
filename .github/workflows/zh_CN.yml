@@ -1,12 +1,12 @@
-name: Build
+name: ZH UPDATE
 
 on:
-    push:
-      paths:
-        - ".github/workflows/build.yml"
-        - "src/**"
-        - "build.py"
-        - "version"
+    workflow_call:
+      output:
+        release:
+          value: ${{ jobs.zh_CN.outputs.RELEASE }}
+        version:
+          value: ${{ jobs.zh_CN.outputs.VERSION }}
 
 jobs:
     zh_-CN:

@@ -16,7 +16,7 @@ avatar.run(lang)
 char_classisy.run(lang)
 
 # 写入版本信息
-if lang == "zh_CN"
+if lang == "zh_CN":
     with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
         existing_version = None
         if Path(cwd, "version").exists():
