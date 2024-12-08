@@ -9,7 +9,7 @@ from github import Github
 from src import avatar, character, char_classisy
 from src import cwd, build_path, cache_path
 
-
+print(os.environ)
 lang = os.environ.get("BUILT_LANG")
 character.run(lang)
 avatar.run(lang)
