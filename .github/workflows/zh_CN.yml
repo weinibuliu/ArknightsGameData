@@ -41,7 +41,7 @@ jobs:
         - name: Upload Release Assets
           uses: actions/upload-artifact@v4.4.1
           with:
-            name: zh_CN_${{ inputs.time }}
+            name: zh_CN_${{ inputs.timestamp }}
             path: |
               build/*
               !build/character_table_full.json
