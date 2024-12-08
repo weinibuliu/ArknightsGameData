@@ -43,15 +43,13 @@ jobs:
     Release:
         needs: [meta,zh_CN]
         runs-on: ubuntu-latest
-        if: ${{ needs.zh_CN.outputs.release == 'true' }}
         steps:
         - name: Checkout Code
           uses: actions/checkout@v4.2.1
 
         - name: Download Artifacts
           uses: actions/download-artifact@v4
-          with:
-            path: assets
+
         - name: Create Release
           uses: actions/download-artifact@v4
           with:
