@@ -1,0 +1,72 @@
+name: Build
+
+on:
+    push:
+      paths:
+        - ".github/workflows/build.yml"
+        - "src/**"
+        - "build.py"
+        - "version"
+
+jobs:
+    zh_-CN:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout Code
+          uses: actions/checkout@v4.2.1
+
+        - name: Checkout ArknightsGameResource
+          uses: actions/checkout@v4.2.1
+          with:
+            repository: yuanyan3060/ArknightsGameResource
+            ref: main
+            path: cache/zh_CN
+            sparse-checkout: |
+              avatar
+              gamedata/excel/character_table.json
+              version
+
+        - name: Set Timezone
+          uses: szenius/set-timezone@v1.1
+          with:
+            timezoneLinux: 'Asia/Shanghai'
+
+        - name: Setup Python
+          uses: actions/setup-python@v5.2.0
+          with:
+            python-version: '3.12'
+
+        - name: Run build.py
+          run: |
+              echo BUILT_LANG=zh_CN >> "$GITHUB_ENV"
+              pip install --upgrade pip
+              pip install -r requirements.txt
+              python build.py
+
+        - name: Upload Avatar Assets
+          uses: actions/upload-artifact@v4.4.1
+          with:
+            name: Avatar_${{ env.VERSION }}
+            path: |
+              build/version
+              build/avatar/*
+
+        - name: Upload Character Assets
+          uses: actions/upload-artifact@v4.4.1
+          with:
+            name: Charater_${{ env.VERSION }}
+            path: |
+              build/version
+              build/character_table.json
+
+        - name: Upload Release Assets
+          uses: actions/upload-artifact@v4.4.1
+          with:
+            name: Release_${{ env.VERSION }}
+            path: |
+              build/*
+              !build/character_table_full.json
+
+        outputs:
+          release: ${{ env.RELEASE }}
+          version: ${{ env.VERSION }}

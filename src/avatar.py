@@ -3,11 +3,12 @@ import json
 import shutil
 from pathlib import Path
 
-build_path = Path(Path.cwd(), "build")
-cache_path = Path(Path.cwd(), "cache")
 
+def run(lang: str = "zh_CN"):
 
-def run():
+    build_path = Path(Path.cwd(), "build")
+    cache_path = Path(Path.cwd(), "cache", lang)
+
     with open(Path(build_path, "character_table.json"), "r", encoding="utf-8") as c:
         chars: dict = json.load(c)
 

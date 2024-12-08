@@ -1,4 +1,4 @@
-name: Auto Build
+name: Build
 
 on:
     push:
@@ -17,106 +17,39 @@ on:
       - cron: '30 2 * * *'
 
 jobs:
-    Build:
-      runs-on: ubuntu-latest
-      steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4.2.1
-
-      - name: Checkout ArknightsGameResource
-        uses: actions/checkout@v4.2.1
-        with:
-          repository: yuanyan3060/ArknightsGameResource
-          ref: main
-          path: cache
-          sparse-checkout: |
-            avatar
-            gamedata/excel/character_table.json
-            version
-
-      - name: Set Timezone
-        uses: szenius/set-timezone@v1.1
-        with:
-          timezoneLinux: 'Asia/Shanghai'
-
-      - name: Setup Python
-        uses: actions/setup-python@v5.2.0
-        with:
-          python-version: '3.12'
-
-      - name: Run build.py
-        run: |
-            pip install --upgrade pip
-            pip install -r requirements.txt
-            python build.py
-
-      - name: Upload Avatar Assets
-        uses: actions/upload-artifact@v4.4.1
-        with:
-          name: Avatar_${{ env.VERSION }}
-          path: |
-            build/version
-            build/avatar/*
-
-      - name: Upload Character Assets
-        uses: actions/upload-artifact@v4.4.1
-        with:
-          name: Charater_${{ env.VERSION }}
-          path: |
-            build/version
-            build/character_table.json
-
-      - name: Upload Character Assets (Full)
-        uses: actions/upload-artifact@v4.4.1
-        with:
-          name: Charater_full_${{ env.VERSION }}
-          path: |
-            build/version
-            build/character_table_full.json
-
-      - name: Upload Release Assets
-        uses: actions/upload-artifact@v4.4.1
-        with:
-          name: Release_${{ env.VERSION }}
-          path: |
-            build/*
-            !build/character_table_full.json
-
-      outputs:
-        release: ${{ env.RELEASE }}
-        version: ${{ env.VERSION }}
-
+    zh_-CN:
+        uses: ./.github/workflows/zh_CN.yml
     Release:
-      runs-on: ubuntu-latest
-      needs: Build
-      if: ${{ needs.Build.outputs.release == 'true' }}
-      steps:
-        - name: Checkout Code
-          uses: actions/checkout@v4.2.1
+        runs-on: ubuntu-latest
+        needs: Build
+        if: ${{ needs.Build.outputs.release == 'true' }}
+        steps:
+          - name: Checkout Code
+            uses: actions/checkout@v4.2.1
 
-        - name: Download Release Assets
-          uses: actions/download-artifact@v4.1.8
-          with:
-            name: Release_${{ needs.Build.outputs.version }}
-            path: build
+          - name: Download Release Assets
+            uses: actions/download-artifact@v4.1.8
+            with:
+              name: Release_${{ needs.Build.outputs.version }}
+              path: build
 
-        - name: Create Release Zip
-          run: |
-            cd build
-            cp version ..
-            zip -r ArknightsGameData.zip .
+          - name: Create Release Zip
+            run: |
+              cd build
+              cp version ..
+              zip -r ArknightsGameData.zip .
 
-        - name: Commit Version
-          uses: EndBug/add-and-commit@v9.1.4
-          with:
-            author_name: github-actions
-            author_email: github-actions[bot]@users.noreply.github.com
-            message: 'Commit from Github Action'
-            add: 'version'
-            tag_push: '--force'
+          - name: Commit Version
+            uses: EndBug/add-and-commit@v9.1.4
+            with:
+              author_name: github-actions
+              author_email: github-actions[bot]@users.noreply.github.com
+              message: 'Commit from Github Action'
+              add: 'version'
+              tag_push: '--force'
 
-        - name: Create Release
-          uses: softprops/action-gh-release@v2.0.8
-          with:
-            files: build/ArknightsGameData.zip
-            tag_name: ${{ needs.Build.outputs.version }}
+          - name: Create Release
+            uses: softprops/action-gh-release@v2.0.8
+            with:
+              files: build/ArknightsGameData.zip
+              tag_name: ${{ needs.Build.outputs.version }}

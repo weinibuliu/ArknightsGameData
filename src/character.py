@@ -3,19 +3,15 @@ import json
 from pathlib import Path
 
 
-cache_path = Path(Path.cwd(), "cache")
-build_path = Path(Path.cwd(), "build")
+def run(lang: str = "zh_CN"):
+    cache_path = Path(Path.cwd(), "cache", lang)
+    build_path = Path(Path.cwd(), "build")
 
-
-def run():
     with open(
         f"{cache_path}/gamedata/excel/character_table.json", "r", encoding="utf-8"
     ) as js:
         raw: dict = json.load(js)
         raw_items: list[list] = list(raw.items())
-
-    with open(f"{build_path}/character_table_full.json", "w", encoding="utf-8") as ct_f:
-        json.dump(raw, ct_f, indent=4, ensure_ascii=False)
 
     num = 0
     characters: dict = {}
