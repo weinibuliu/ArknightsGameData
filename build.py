@@ -13,7 +13,7 @@ lang = sys.argv[1]
 
 character.run(lang)
 avatar.run(lang)
-char_classisy.run(lang)
+char_classisy.run()
 
 # 写入版本信息
 if lang == "zh_CN":
