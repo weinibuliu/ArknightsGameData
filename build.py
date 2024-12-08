@@ -15,12 +15,16 @@ character.run(lang)
 avatar.run(lang)
 char_classisy.run()
 
+# mkdir
+Path(cwd, "version").mkdir(exist_ok=True)
+Path(cwd, f"version/{lang}").mkdir(exist_ok=True)
+Path(cwd, f"vesion/{lang}//version").mkdir(exist_ok=True)
+
 # 写入版本信息
 if lang == "zh_CN":
     with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
         existing_version = None
         existing_version_path = Path(cwd, f"version/{lang}/version")
-        existing_version_path.parent.mkdir()
         if existing_version_path.exists():
             with open(existing_version_path, "r", encoding="utf-8") as ev:
                 existing_version = ev.readline().replace("\n", "")
