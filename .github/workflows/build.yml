@@ -16,7 +16,26 @@ on:
       - cron: '30 2 * * *'
 
 jobs:
+    meta:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout Code
+            uses: actions/checkout@v4.2.1
+
+          - name: Setup Python
+            uses: actions/setup-python@v5.2.0
+            with:
+              python-version: '3.12'
+
+          - name: Run timestamp.py
+            run: |
+              python timestamp.py
+
+        outputs:
+          timestamp: ${{ env.TIMESTAMP }}
+
     zh_CN:
+        needs: meta
         uses: ./.github/workflows/zh_CN.yml
 
     Release:
@@ -30,7 +49,6 @@ jobs:
           - name: Download Release Assets
             uses: actions/download-artifact@v4.1.8
             with:
-              name: Release_${{ needs.zh_CN.outputs.version }}
               path: build
 
           - name: Create Release Zip

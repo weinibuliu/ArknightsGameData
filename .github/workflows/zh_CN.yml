@@ -46,11 +46,10 @@ jobs:
         - name: Upload Release Assets
           uses: actions/upload-artifact@v4.4.1
           with:
-            name: zh_CN${{ env.VERSION }}
+            name: zh_CN_${{ needs.meta.outputs.timestamp }}
             path: |
               build/*
               !build/character_table_full.json
 
         outputs:
           release: ${{ env.RELEASE }}
-          version: ${{ env.VERSION }}
