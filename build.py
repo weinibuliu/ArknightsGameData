@@ -15,14 +15,6 @@ character.run(lang)
 avatar.run(lang)
 char_classisy.run()
 
-# mkdir
-for dir in [
-    Path(cwd, "version"),
-    Path(cwd, f"version/{lang}"),
-    Path(cwd, f"vesion/{lang}/version"),
-]:
-    if not dir.exists():
-        dir.mkdir()
 
 # 写入版本信息
 if lang == "zh_CN":
@@ -32,6 +24,8 @@ if lang == "zh_CN":
         if existing_version_path.exists():
             with open(existing_version_path, "r", encoding="utf-8") as ev:
                 existing_version = ev.readline().replace("\n", "")
+        else:
+            existing_version_path.mkdir()
         print(f"Existing Version: {existing_version}")
 
         with open(f"{cache_path}/{lang}/version", "r", encoding="utf-8") as cv:
