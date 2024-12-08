@@ -48,12 +48,8 @@ jobs:
         - name: Checkout Code
           uses: actions/checkout@v4.2.1
 
-        - name: Download Release Assets
-          uses: actions/download-artifact@v4.1.8
-          with:
-            path: build
-
         - name: Create Release
-          uses: softprops/action-gh-release@v2.0.8
+          uses: ncipollo/release-action@v1.14.0
           with:
-            tag_name: ${{ needs.meta.outputs.timestamp }}
+            artifacts: zh_${{ needs.meta.outputs.timestamp }}
+            name: ${{ needs.meta.outputs.timestamp }}
