@@ -45,6 +45,7 @@ jobs:
         uses: ./.github/workflows/yostar.yml
         with:
           lang: en_US
+          timezone: America/New_York
           timestamp: ${{ needs.meta.outputs.timestamp }}
 
     ja_JP:
@@ -52,6 +53,7 @@ jobs:
         uses: ./.github/workflows/yostar.yml
         with:
           lang: ja_JP
+          timezone: Asia/Tokyo
           timestamp: ${{ needs.meta.outputs.timestamp }}
 
     ko_KR:
@@ -59,6 +61,7 @@ jobs:
         uses: ./.github/workflows/yostar.yml
         with:
           lang: ko_KR
+          timezone: Asia/Seoul
           timestamp: ${{ needs.meta.outputs.timestamp }}
 
     Release:
@@ -76,10 +79,10 @@ jobs:
         - name: Create Zip
           run: |
             cd assets
-            zip -r -q zh_CN_${{ needs.meta.outputs.timestamp }}.zip zh_CN/${{ needs.meta.outputs.timestamp }}/*
-            zip -r -q en_US_${{ needs.meta.outputs.timestamp }}.zip en_US/${{ needs.meta.outputs.timestamp }}/*
-            zip -r -q ja_JP_${{ needs.meta.outputs.timestamp }}.zip ja_JP/${{ needs.meta.outputs.timestamp }}/*
-            zip -r -q ko_KR_${{ needs.meta.outputs.timestamp }}.zip ko_KR/${{ needs.meta.outputs.timestamp }}/*
+            zip -r -q zh_CN_${{ needs.meta.outputs.timestamp }}.zip zh_CN_${{ needs.meta.outputs.timestamp }}/*
+            zip -r -q en_US_${{ needs.meta.outputs.timestamp }}.zip en_US_${{ needs.meta.outputs.timestamp }}/*
+            zip -r -q ja_JP_${{ needs.meta.outputs.timestamp }}.zip ja_JP_${{ needs.meta.outputs.timestamp }}/*
+            zip -r -q ko_KR_${{ needs.meta.outputs.timestamp }}.zip ko_KR_${{ needs.meta.outputs.timestamp }}/*
 
         - name: Create Release
           uses: softprops/action-gh-release@v2.1.0

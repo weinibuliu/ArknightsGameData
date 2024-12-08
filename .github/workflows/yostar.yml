@@ -4,10 +4,12 @@ on:
         lang:
           required: true
           type: string
+        timezone:
+          required: true
+          type: string
         timestamp:
           required: true
           type: string
-
       outputs:
         release:
           value: ${{ jobs.Build.outputs.RELEASE }}
@@ -31,7 +33,7 @@ jobs:
         - name: Set Timezone
           uses: szenius/set-timezone@v1.1
           with:
-            timezoneLinux: 'America/New_York'
+            timezoneLinux: ${{ inputs.timezone }}
 
         - name: Setup Python
           uses: actions/setup-python@v5.2.0
