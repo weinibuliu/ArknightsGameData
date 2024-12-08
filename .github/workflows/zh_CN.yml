@@ -2,7 +2,7 @@ name: ZH UPDATE
 
 on:
     workflow_call:
-      output:
+      outputs:
         release:
           value: ${{ jobs.zh_CN.outputs.RELEASE }}
         version:
