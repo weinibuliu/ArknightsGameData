@@ -53,6 +53,8 @@ if os.environ.get("CI"):
     if current_version != existing_version:
         subprocess.check_call(f'echo RELEASE=true >> "$GITHUB_ENV"', shell=True)
         print("env.RELEASE = true")
+    else:
+        print("env.RELEASE = false")
 print("Done: Version")
 
 print("All Done!")
