@@ -3,7 +3,14 @@ name: Auto Build
 on:
     push:
       branches:
-        - "**"
+      - "**"
+
+      paths:
+        - ".github/workflows/build.yml"
+        - "src/**"
+        - "build.py"
+        - "version"
+
 
     schedule:
       - cron: '30 8 * * *'
