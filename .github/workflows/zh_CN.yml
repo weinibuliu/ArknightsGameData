@@ -4,12 +4,12 @@ on:
     workflow_call:
       outputs:
         release:
-          value: ${{ jobs.zh_CN.outputs.RELEASE }}
+          value: ${{ jobs.Build.outputs.RELEASE }}
         version:
-          value: ${{ jobs.zh_CN.outputs.VERSION }}
+          value: ${{ jobs.Build.outputs.VERSION }}
 
 jobs:
-    zh_-CN:
+    Build:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout Code
@@ -38,7 +38,7 @@ jobs:
 
         - name: Run build.py
           run: |
-              echo BUILT_LANG=zh_CN >> "$GITHUB_ENV"
+              echo "BUILT_LANG=zh_CN" >> "$GITHUB_ENV"
               pip install --upgrade pip
               pip install -r requirements.txt
               python build.py
