@@ -17,7 +17,7 @@ jobs:
           with:
             repository: yuanyan3060/ArknightsGameResource
             ref: main
-            path: cache/${{ env.LANG  }}
+            path: cache/${{ env.LANG }}
             sparse-checkout: |
               avatar
               gamedata/excel/character_table.json
@@ -37,13 +37,13 @@ jobs:
           run: |
               pip install --upgrade pip
               pip install -r requirements.txt
-              mkdir version/${{ env.LANG  }} -p
-              python build.py ${{ env.LANG  }}
+              mkdir version/${{ env.LANG }} -p
+              python build.py ${{ env.LANG }}
 
         - name: Upload Release Assets
           uses: actions/upload-artifact@v4.4.1
           with:
-            name: ${{ env.LANG  }}_${{ inputs.timestamp }}
+            name: ${{ env.LANG }}_${{ inputs.timestamp }}
             path: |
               build/*
               !build/character_table_full.json
