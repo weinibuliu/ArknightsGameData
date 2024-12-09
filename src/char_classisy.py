@@ -63,7 +63,10 @@ def profession(_chars: dict[str, dict]):
     with open(Path(classisy_path, "profession.json"), "w", encoding="utf-8") as p:
         json.dump(profession_dict, p, indent=4, ensure_ascii=False)
 
-    print(f"Done: Profession classification ({num})")
+    if num == 0:
+        raise RuntimeError("Fail to classisy characters by profession.")
+    else:
+        print(f"Done: Profession classification ({num})")
 
 
 def rarity(_chars: dict[str, dict], lang: str):
@@ -80,7 +83,10 @@ def rarity(_chars: dict[str, dict], lang: str):
     with open(Path(classisy_path, "rarity.json"), "w", encoding="utf-8") as r:
         json.dump(rarity_dict, r, indent=4, ensure_ascii=False)
 
-    print(f"Done: Rarity classification ({num})")
+    if num == 0:
+        raise RuntimeError("Fail to classisy characters by rarity.")
+    else:
+        print(f"Done: Rarity classification ({num})")
 
 
 def run(lang: str):

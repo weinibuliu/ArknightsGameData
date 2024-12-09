@@ -39,7 +39,10 @@ def run(lang: str):
     with open(f"{build_path}/character_table.json", "w", encoding="utf-8") as ct:
         json.dump(characters, ct, indent=4, ensure_ascii=False)
 
-    print(f"Done: Character ({num})")
+    if num == 0:
+        raise RuntimeError("Fail to get characters.")
+    else:
+        print(f"Done: Character ({num})")
 
 
 if __name__ == "__main__":
