@@ -2,11 +2,6 @@ name: zh_CN
 
 on:
     workflow_call:
-      inputs:
-        timestamp:
-          required: true
-          type: string
-
       outputs:
         timestamp:
           value: ${{ jobs.Build.outputs.timestamp }}
