@@ -64,6 +64,8 @@ jobs:
       - name: Run build.py
         timeout-minutes: 2
         run: |
+          ls
+          ls cahce
           ls cahce/${{ inputs.lang }}
           pip install --upgrade pip
           pip install -r requirements.txt
