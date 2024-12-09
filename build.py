@@ -16,6 +16,7 @@ print(f"Language: {lang}")
 character.run(lang)
 char_classisy.run(lang)
 avatar.run(lang)
+print()
 
 # 写入版本信息
 ver = version = existing_version = current_version = None
@@ -51,7 +52,7 @@ shutil.copyfile(Path(build_path, "version"), existing_version_path)
 # 写入 GITHUB ENV
 if os.environ.get("CI"):
     subprocess.check_call(f'echo VER={current_version} >> "$GITHUB_ENV"', shell=True)
-    print(f"VER = {current_version}")
+    print(f"env.VER = {current_version}")
     if current_version is not None and current_version != existing_version:
         subprocess.check_call(f'echo RELEASE=true >> "$GITHUB_ENV"', shell=True)
         print("env.RELEASE = true")

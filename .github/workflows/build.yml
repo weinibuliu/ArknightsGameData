@@ -49,7 +49,7 @@ jobs:
     Release:
         needs: [zh_CN,en_US,ja_JP,ko_KR]
         runs-on: ubuntu-latest
-        if: ${{ needs.zh_CN.outputs.release == 'true' }} || ${{ needs.en_US.outputs.release == 'true' }} || ${{ needs.ja_JP.outputs.release == 'true' }} || ${{ needs.ko_KR.outputs.release == 'true' }}
+        if: needs.zh_CN.outputs.release == 'true' || needs.en_US.outputs.release == 'true' || needs.ja_JP.outputs.release == 'true' || needs.ko_KR.outputs.release == 'true'
         steps:
         - name: Checkout Code
           uses: actions/checkout@v4.2.1

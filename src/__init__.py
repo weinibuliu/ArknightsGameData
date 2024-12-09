@@ -10,4 +10,4 @@ for path in [cache_path, build_path, b_ava_path, classisy_path]:
     if not path.exists():
         path.mkdir()
 
-print("Done: Initialization")
+print("Done: Initialization\n")
