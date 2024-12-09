@@ -13,7 +13,7 @@ if len(sys.argv) > 2:
 until = datetime.now()
 since = until - timedelta(15)
 
-gh = Github(login_or_token=token, per_page=15, seconds_between_requests=2, retry=None)
+gh = Github(login_or_token=token, per_page=15, seconds_between_requests=2)
 repo = gh.get_repo("Kengxxiao/ArknightsGameData_YoStar")
 
 

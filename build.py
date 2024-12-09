@@ -1,3 +1,5 @@
+# please run: python build.py {Language} {Github Token}
+
 import os
 import sys
 import time
