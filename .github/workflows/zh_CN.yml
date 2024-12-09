@@ -7,6 +7,8 @@ on:
           value: ${{ jobs.Build.outputs.timestamp }}
         release:
           value: ${{ jobs.Build.outputs.RELEASE }}
+        ver:
+          value: ${{jobs.Build.outputs.ver}}
 
 jobs:
     Build:
@@ -72,4 +74,4 @@ jobs:
         outputs:
           timestamp: ${{ env.TIMESTAMP }}
           release: ${{ env.RELEASE }}
-          filename: zh_CN_${{ env.TIMESTAMP }}
+          ver: ${{ env.VER }}

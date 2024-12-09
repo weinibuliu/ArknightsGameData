@@ -71,7 +71,7 @@ jobs:
             mv ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip ..
 
             cd ../ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip .
-            zip -r -q ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip ko_KR_${{ needs.zh_CN.outputs.timestamp }}
+            zip -r -q ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip .
             mv ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip ..
 
         - name: Create Release
@@ -84,4 +84,8 @@ jobs:
               assets/en_US_${{ needs.zh_CN.outputs.timestamp }}.zip
               assets/ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip
               assets/ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip
-            body: test
+            body: |
+             zh_CN: ${{ needs.zh_CN.outputs.ver }}
+             en_US: ${{ needs.en_US.outputs.ver }}
+             ja_JP: ${{ needs.ja_JP.outputs.ver }}
+             ko_KR: ${{ needs.ko_KR.outputs.ver }}
