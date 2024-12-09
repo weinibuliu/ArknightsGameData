@@ -47,7 +47,7 @@ jobs:
               mkdir version/${{ inputs.lang }} -p
               python build.py ${{ inputs.lang }}
 
-        - name: Download Artifacts
+        - name: Download Avatar
           uses: actions/download-artifact@v4.1.8
           with:
             name: avatar_${{ inputs.timestamp }}
@@ -61,7 +61,7 @@ jobs:
               build/*
 
         - name: Commit Version
-          if: ${{ env.release == 'true' }}
+          if: ${{ env.RELEASE == 'true' }}
           uses: EndBug/add-and-commit@v9.1.4
           with:
             author_name: github-actions

@@ -9,7 +9,10 @@ repo = Github().get_repo("Kengxxiao/ArknightsGameData_YoStar")
 
 
 def get_commit_msg(lang: str) -> str:
-    flag = lang.split("_")[0].upper()
+    if lang == "en_US":
+        flag = lang.split("_")[0].upper()
+    else:
+        flag = lang.split("_")[1]
     commits = repo.get_commits(
         path=f"{lang}/gamedata",
         since=since,
@@ -31,5 +34,5 @@ def get_version(lang: str) -> str | None:
 
 
 if __name__ == "__main__":
-    ver = get_version("en_US")
+    ver = get_version("ko_KR")
     print(ver)
