@@ -61,19 +61,7 @@ jobs:
           uses: actions/upload-artifact@v4.4.1
           with:
             name: ${{ inputs.lang }}_${{ inputs.timestamp }}
-            path: |
-              build/*
-
-        - name: Commit Version
-          if: ${{ env.RELEASE == 'true' }}
-          uses: EndBug/add-and-commit@v9.1.4
-          with:
-            fetch: '--all --force'
-            pull: '--autostash --rebase origin main'
-            author_name: github-actions
-            author_email: github-actions[bot]@users.noreply.github.com
-            message: '[${{ inputs.lang }}] ${{ env.VER }}'
-            add: 'version/${{ inputs.lang }}/version'
+            path: build/*
 
         outputs:
           release: ${{ env.RELEASE }}
