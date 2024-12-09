@@ -66,22 +66,22 @@ jobs:
             mkdir -p zh_CN && mkdir -p en_US && mkdir -p ja_JP && mkdir -p ko_KR && cd ..
 
             cd assets
-            cd zh_CN-${{ needs.zh_CN.outputs.timestamp }}
+            cd zh_CN-${{ needs.zh_CN.outputs.timestamp }} && mv version-zh_CN ..
             zip -r -q zh_CN-${{ needs.zh_CN.outputs.timestamp }}.zip .
             mv zh_CN-${{ needs.zh_CN.outputs.timestamp }}.zip ..
             mv -f version ../../version/zh_CN/
 
-            cd ../en_US-${{ needs.zh_CN.outputs.timestamp }}
+            cd ../en_US-${{ needs.zh_CN.outputs.timestamp }} && mv version-en_US ..
             zip -r -q en_US-${{ needs.zh_CN.outputs.timestamp }}.zip .
             mv en_US-${{ needs.zh_CN.outputs.timestamp }}.zip ..
             mv -f version ../../version/en_US/
 
-            cd ../ja_JP-${{ needs.zh_CN.outputs.timestamp }}
+            cd ../ja_JP-${{ needs.zh_CN.outputs.timestamp }} && mv version-ja_JP ..
             zip -r -q ja_JP-${{ needs.zh_CN.outputs.timestamp }}.zip .
             mv ja_JP-${{ needs.zh_CN.outputs.timestamp }}.zip ..
             mv -f version ../../version/ja_JP/
 
-            cd ../ko_KR-${{ needs.zh_CN.outputs.timestamp }}
+            cd ../ko_KR-${{ needs.zh_CN.outputs.timestamp }} && mv version-ko_KR ..
             zip -r -q ko_KR-${{ needs.zh_CN.outputs.timestamp }}.zip .
             mv ko_KR-${{ needs.zh_CN.outputs.timestamp }}.zip ..
             mv -f version ../../version/ko_KR/
@@ -132,6 +132,10 @@ jobs:
               assets/en_US-${{ needs.zh_CN.outputs.timestamp }}.zip
               assets/ja_JP-${{ needs.zh_CN.outputs.timestamp }}.zip
               assets/ko_KR-${{ needs.zh_CN.outputs.timestamp }}.zip
+              assets/version-zh_CN
+              assets/version-en_US
+              assets/version-ja_JP
+              assets/version-ko_KR
             body: |
              - zh_CN: ${{ needs.zh_CN.outputs.ver }}
              - en_US: ${{ needs.en_US.outputs.ver }}

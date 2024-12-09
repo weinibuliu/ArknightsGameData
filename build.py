@@ -24,11 +24,7 @@ print()
 ver = version = existing_version = current_version = None
 existing_version_path = Path(cwd, f"version/{lang}/version")
 
-if lang == "zh_CN":
-    with open(f"{cache_path}/{lang}/version", "r", encoding="utf-8") as cv:
-        current_version = cv.readline().replace("\n", "")
-else:
-    current_version = get_version(lang)
+current_version = get_version(lang)
 print(f"Current Version: {current_version}")
 
 with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
@@ -48,6 +44,9 @@ with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
     vs.write(f"{version}\n")
     vs.write(f"built_time: {built_time}\n")
     vs.write(f"built_timestamp: {built_timestamp}")
+
+with open(f"{build_path}/version-{lang}", "w", encoding="utf-8") as vl:
+    vl.write(current_version)
 
 shutil.copyfile(Path(build_path, "version"), existing_version_path)
 

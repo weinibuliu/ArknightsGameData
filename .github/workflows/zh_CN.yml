@@ -1,66 +1,65 @@
 name: zh_CN
 
 on:
-    workflow_call:
-      outputs:
-        timestamp:
-          value: ${{ jobs.Build.outputs.timestamp }}
-        release:
-          value: ${{ jobs.Build.outputs.RELEASE }}
-        ver:
-          value: ${{jobs.Build.outputs.ver}}
+  workflow_call:
+    outputs:
+      timestamp:
+        value: ${{ jobs.Build.outputs.timestamp }}
+      release:
+        value: ${{ jobs.Build.outputs.RELEASE }}
+      ver:
+        value: ${{jobs.Build.outputs.ver}}
 
 jobs:
-    Build:
-        runs-on: macos-latest
-        steps:
-        - name: Checkout Code
-          uses: actions/checkout@v4.2.1
+  Build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.2.1
 
-        - name: Checkout ArknightsGameResource
-          uses: actions/checkout@v4.2.1
-          with:
-            repository: yuanyan3060/ArknightsGameResource
-            ref: main
-            path: cache/zh_CN
-            sparse-checkout: |
-              avatar
-              gamedata/excel/character_table.json
-              version
+      - name: Checkout ArknightsGameResource
+        uses: actions/checkout@v4.2.1
+        with:
+          repository: yuanyan3060/ArknightsGameResource
+          ref: main
+          path: cache
+          sparse-checkout: |
+            avatar
+            gamedata/excel/character_table.json
 
-        - name: Set Timezone
-          uses: szenius/set-timezone@v1.1
-          with:
-            timezoneMacos: 'Asia/Shanghai'
+      - name: Set Timezone
+        uses: szenius/set-timezone@v1.1
+        with:
+          timezoneMacos: "Asia/Shanghai"
 
-        - name: Setup Python
-          uses: actions/setup-python@v5.2.0
-          with:
-            python-version: '3.12'
+      - name: Setup Python
+        uses: actions/setup-python@v5.2.0
+        with:
+          python-version: "3.12"
 
-        - name: Run build.py
-          timeout-minutes: 2
-          run: |
-              pip install --upgrade pip
-              pip install -r requirements.txt
-              mkdir -p version/zh_CN
-              python timestamp.py
-              python build.py zh_CN ${{ secrets.GITHUB_TOKEN }}
+      - name: Run build.py
+        timeout-minutes: 2
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          mkdir -p version/zh_CN
+          python timestamp.py
+          python build.py zh_CN ${{ secrets.GITHUB_TOKEN }}
 
-        - name: Upload Avatar Artifact
-          uses: actions/upload-artifact@v4.4.1
-          with:
-            name: zh_CN-only-avatar-${{ env.TIMESTAMP }}
-            path: |
-              build/avatar/*
+      - name: Upload Avatar Artifact
+        uses: actions/upload-artifact@v4.4.1
+        with:
+          name: zh_CN-only-avatar-${{ env.TIMESTAMP }}
+          path: |
+            build/avatar/*
 
-        - name: Upload Release Artifact
-          uses: actions/upload-artifact@v4.4.1
-          with:
-            name: zh_CN-${{ env.TIMESTAMP }}
-            path: build/*
+      - name: Upload Release Artifact
+        uses: actions/upload-artifact@v4.4.1
+        with:
+          name: zh_CN-${{ env.TIMESTAMP }}
+          path: build/*
 
-        outputs:
-          timestamp: ${{ env.TIMESTAMP }}
-          release: ${{ env.RELEASE }}
-          ver: ${{ env.VER }}
+    outputs:
+      timestamp: ${{ env.TIMESTAMP }}
+      release: ${{ env.RELEASE }}
+      ver: ${{ env.VER }}
