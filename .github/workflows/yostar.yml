@@ -51,6 +51,7 @@ jobs:
             path: cache/${{ inputs.lang }}/avatar
 
         - name: Run build.py
+          timeout-minutes: 3
           run: |
               pip install --upgrade pip
               pip install -r requirements.txt

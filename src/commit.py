@@ -1,3 +1,6 @@
+# 获取 https://www.github.com/Kengxxiao/ArknightsGameData_YoStar 的 commit message
+# 适用范围： en_US | ja_JP | ko_KR
+
 from datetime import datetime, timedelta
 
 from github import Github
@@ -5,7 +8,9 @@ from github import Github
 until = datetime.now()
 since = until - timedelta(15)
 
-repo = Github().get_repo("Kengxxiao/ArknightsGameData_YoStar")
+repo = Github(timeout=60, seconds_between_requests=5).get_repo(
+    "Kengxxiao/ArknightsGameData_YoStar", lazy=True
+)
 
 
 def get_commit_msg(lang: str) -> str:
@@ -33,5 +38,6 @@ def get_version(lang: str) -> str | None:
 
 
 if __name__ == "__main__":
-    ver = get_version("ko_KR")
-    print(ver)
+    for lang in ["en_US", "ja_JP", "ko_KR"]:
+        ver = get_version(lang)
+        print(f"{lang}: {ver}")
