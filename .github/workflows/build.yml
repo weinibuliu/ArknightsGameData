@@ -1,4 +1,4 @@
-name: Build
+name: Auto Build
 
 on:
     push:
@@ -110,7 +110,7 @@ jobs:
             cd assets
             cd avatar-zh_CN-${{ needs.meta.outputs.timestamp }}
             zip -r -q avatar-zh_CN-${{ needs.meta.outputs.timestamp }}.zip .
-            move avatar-zh_CN-${{ needs.meta.outputs.timestamp }}.zip ..
+            mv avatar-zh_CN-${{ needs.meta.outputs.timestamp }}.zip ..
 
             cd ../zh_CN-${{ needs.meta.outputs.timestamp }} && mv zh_CN-version ..
             zip -r -q zh_CN-${{ needs.meta.outputs.timestamp }}.zip .
