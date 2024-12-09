@@ -73,3 +73,4 @@ jobs:
               assets/en_US_${{ needs.zh_CN.outputs.timestamp }}.zip
               assets/ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip
               assets/ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip
+            body: test
