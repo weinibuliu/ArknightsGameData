@@ -52,6 +52,7 @@ jobs:
 
         - name: Run build.py
           run: |
+              ls build/${{ inputs.lang }}/avatar
               pip install --upgrade pip
               pip install -r requirements.txt
               mkdir version/${{ inputs.lang }} -p
