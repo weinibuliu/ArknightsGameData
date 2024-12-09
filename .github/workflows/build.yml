@@ -66,7 +66,7 @@ jobs:
             zip -r -q en_US_${{ needs.zh_CN.outputs.timestamp }}.zip .
             mv en_US_${{ needs.zh_CN.outputs.timestamp }}.zip ..
 
-            cd ../JP_${{ needs.zh_CN.outputs.timestamp }}
+            cd ../ja_JP_${{ needs.zh_CN.outputs.timestamp }}
             zip -r -q ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip .
             mv ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip ..
 
