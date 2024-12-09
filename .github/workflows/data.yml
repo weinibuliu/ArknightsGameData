@@ -3,7 +3,7 @@ name: Data
 on:
   workflow_call:
     inputs:
-        check_repo:
+        checkout_repo:
           required: false
           type: string
           default: Kengxxiao/ArknightsGameData_YoStar

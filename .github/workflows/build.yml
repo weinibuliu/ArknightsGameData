@@ -48,8 +48,8 @@ jobs:
         if: ${{ needs.meta.outputs.zh_CN == 'true' }}
         uses: ./.github/workflows/data.yml
         with:
-          check_repo: yuanyan3060/ArknightsGameResource
-          check_files: |
+          checkout_repo: yuanyan3060/ArknightsGameResource
+          checkout_files: |
             avatar
             gamedata/excel/character_table.json
           checkout_path: cache/zh_CN
