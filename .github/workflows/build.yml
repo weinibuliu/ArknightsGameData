@@ -20,37 +20,74 @@ on:
       - cron: '30 23 * * *'
 
 jobs:
+    meta:
+      runs-on: macos-latest
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@v4.2.1
+
+        - name: Setup Python
+          uses: actions/setup-python@v5.2.0
+          with:
+            python-version: "3.12"
+        - name: Run meta.py
+          run: |
+            python meta.py
+
+      outputs:
+        timestamp: ${{ env.timestamp }}
+        enable_workflow: ${{ env.enable_workflow }}
+        create_release: ${{ env.create_release }}
+        zh_CN: ${{ env.zh_CN }}
+        en_US: ${{ env.en_US }}
+        ja_JP: ${{ env.ja_JP }}
+        ko_KR: ${{ env.ko_KR }}
+
     zh_CN:
-        uses: ./.github/workflows/zh_CN.yml
+        needs: meta
+        if: ${{ needs.meta.outputs.zh_CN == 'true' }}
+        uses: ./.github/workflows/data.yml
+        with:
+          check_repo: yuanyan3060/ArknightsGameResource
+          check_files: |
+            avatar
+            gamedata/excel/character_table.json
+          checkout_path: cache/zh_CN
+          lang: zh_CN
+          timezone: Asia/Shanghai
+          timestamp: ${{ needs.meta.outputs.timestamp }}
 
     en_US:
-        needs: [zh_CN]
-        uses: ./.github/workflows/yostar.yml
+        needs: [meta,zh_CN]
+        if: ${{ needs.meta.outputs.en_US == 'true' }}
+        uses: ./.github/workflows/data,yml
         with:
           lang: en_US
           timezone: America/New_York
           timestamp: ${{ needs.zh_CN.outputs.timestamp }}
 
     ja_JP:
-        needs: [zh_CN]
-        uses: ./.github/workflows/yostar.yml
+        needs: [meta,zh_CN]
+        if: ${{ needs.meta.outputs.ja_JP == 'true' }}
+        uses: ./.github/workflows/data,yml
         with:
           lang: ja_JP
           timezone: Asia/Tokyo
           timestamp: ${{ needs.zh_CN.outputs.timestamp }}
 
     ko_KR:
-        needs: [zh_CN]
-        uses: ./.github/workflows/yostar.yml
+        needs: [meta,zh_CN]
+        if: ${{ needs.meta.outputs.ko_KR == 'true' }}
+        uses: ./.github/workflows/data,yml
         with:
           lang: ko_KR
           timezone: Asia/Seoul
           timestamp: ${{ needs.zh_CN.outputs.timestamp }}
 
     Release:
-        needs: [zh_CN,en_US,ja_JP,ko_KR]
+        needs: [meta,zh_CN,en_US,ja_JP,ko_KR]
         runs-on: macos-latest
-        if: needs.zh_CN.outputs.release == 'true' || needs.en_US.outputs.release == 'true' || needs.ja_JP.outputs.release == 'true' || needs.ko_KR.outputs.release == 'true'
+        if: needs.meta.outputs.create_release == 'true' && (needs.zh_CN.outputs.release == 'true' || needs.en_US.outputs.release == 'true' || needs.ja_JP.outputs.release == 'true' || needs.ko_KR.outputs.release == 'true')
         steps:
         - name: Checkout Code
           uses: actions/checkout@v4.2.1
