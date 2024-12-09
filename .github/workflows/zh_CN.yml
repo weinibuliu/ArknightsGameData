@@ -8,6 +8,8 @@ on:
           type: string
 
       outputs:
+        timestamp:
+          value: ${{ env.TIMESTAMP }}
         release:
           value: ${{ jobs.Build.outputs.RELEASE }}
 
@@ -44,19 +46,20 @@ jobs:
               pip install --upgrade pip
               pip install -r requirements.txt
               mkdir version/zh_CN -p
+              python timestamp
               python build.py zh_CN
 
         - name: Upload Avatar Artifact
           uses: actions/upload-artifact@v4.4.1
           with:
-            name: avatar_${{ inputs.timestamp }}
+            name: avatar_${{ env.TIMESTAMP }}
             path: |
               build/avatar/*
 
         - name: Upload Release Artifact
           uses: actions/upload-artifact@v4.4.1
           with:
-            name: zh_CN_${{ inputs.timestamp }}
+            name: zh_CN_${{ env.TIMESTAMP }}
             path: |
               build/*
 
@@ -71,5 +74,6 @@ jobs:
             tag_push: '--force'
 
         outputs:
+          timestamp: ${{ env.TIMESTAMP }}
           release: ${{ env.RELEASE }}
-          filename: zh_CN_${{ inputs.timestamp }}
+          filename: zh_CN_${{ env.TIMESTAMP }}
