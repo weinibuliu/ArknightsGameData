@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v4.2.1
         with:
           repository: ${{ inputs.checkout_repo }}
-          path: cache/zh_CN
+          path: cache/zh_CN/
           sparse-checkout: ${{ inputs.checkout_files }}
 
       - name: Set Timezone

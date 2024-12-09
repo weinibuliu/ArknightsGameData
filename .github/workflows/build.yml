@@ -49,7 +49,7 @@ jobs:
         uses: ./.github/workflows/data.yml
         with:
           checkout_repo: yuanyan3060/ArknightsGameResource
-          checkout_path: cache/zh_CN
+          checkout_path: cache/zh_CN/
           checkout_files: |
             avatar
             gamedata/excel/character_table.json
