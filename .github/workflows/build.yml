@@ -58,10 +58,21 @@ jobs:
         - name: Create Zip
           run: |
             cd assets
-            zip -r -q zh_CN_${{ needs.zh_CN.outputs.timestamp }}.zip zh_CN_${{ needs.zh_CN.outputs.timestamp }}
-            zip -r -q en_US_${{ needs.zh_CN.outputs.timestamp }}.zip en_US_${{ needs.zh_CN.outputs.timestamp }}
-            zip -r -q ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip ja_JP_${{ needs.zh_CN.outputs.timestamp }}
+            cd zh_CN_${{ needs.zh_CN.outputs.timestamp }}
+            zip -r -q zh_CN_${{ needs.zh_CN.outputs.timestamp }}.zip .
+            move zh_CN_${{ needs.zh_CN.outputs.timestamp }}.zip ..
+
+            cd ../en_US_${{ needs.zh_CN.outputs.timestamp }}
+            zip -r -q en_US_${{ needs.zh_CN.outputs.timestamp }}.zip .
+            move en_US_${{ needs.zh_CN.outputs.timestamp }}.zip ..
+
+            cd ../JP_${{ needs.zh_CN.outputs.timestamp }}
+            zip -r -q ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip .
+            move ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip ..
+
+            cd ../ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip .
             zip -r -q ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip ko_KR_${{ needs.zh_CN.outputs.timestamp }}
+            move ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip ..
 
         - name: Create Release
           uses: softprops/action-gh-release@v2.1.0
