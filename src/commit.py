@@ -1,16 +1,20 @@
 # 获取 https://www.github.com/Kengxxiao/ArknightsGameData_YoStar 的 commit message
 # 适用范围： en_US | ja_JP | ko_KR
 
+import sys
 from datetime import datetime, timedelta
 
 from github import Github
 
+token = None
+if len(sys.argv) > 2:
+    token = sys.argv[2]
+
 until = datetime.now()
 since = until - timedelta(15)
 
-repo = Github(timeout=60, seconds_between_requests=5).get_repo(
-    "Kengxxiao/ArknightsGameData_YoStar", lazy=True
-)
+gh = Github(login_or_token=token, per_page=15, seconds_between_requests=2, retry=None)
+repo = gh.get_repo("Kengxxiao/ArknightsGameData_YoStar")
 
 
 def get_commit_msg(lang: str) -> str:

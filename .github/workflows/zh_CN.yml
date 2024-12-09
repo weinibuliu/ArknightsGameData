@@ -39,13 +39,13 @@ jobs:
             python-version: '3.12'
 
         - name: Run build.py
-          timeout-minutes: 3
+          timeout-minutes: 2
           run: |
               pip install --upgrade pip
               pip install -r requirements.txt
               mkdir -p version/zh_CN
               python timestamp.py
-              python build.py zh_CN
+              python build.py zh_CN ${{ secrets.GITHUB_TOKEN }}
 
         - name: Upload Avatar Artifact
           uses: actions/upload-artifact@v4.4.1
