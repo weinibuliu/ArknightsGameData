@@ -11,7 +11,7 @@ on:
         - "version/**"
         - "build.py"
         - "meta.py"
-        - "ctrl.txt"
+        - "_ctrl"
 
     schedule:
       - cron: '30 2 * * *'
