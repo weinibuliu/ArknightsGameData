@@ -7,7 +7,7 @@ from pathlib import Path
 
 timestamp = int(time.time())
 subprocess.check_call(f'echo timestamp={timestamp} >> "$GITHUB_ENV"', shell=True)
-print(f"timestamp: {timestamp}")
+print(f"timestamp = {timestamp}")
 
 with open(f"{Path.cwd()}/config.json", "r", encoding="utf-8") as c:
     configs: dict[str] = json.load(c)
