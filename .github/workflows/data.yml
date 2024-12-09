@@ -47,8 +47,8 @@ jobs:
       - name: Checkout ArknightsGameResource
         uses: actions/checkout@v4.2.1
         with:
-          repository: ${{ inputs.repo_url }}
-          path: ${{inputs.checkout_path }}
+          repository: ${{ inputs.checkout_repo }}
+          path: ${{ inputs.checkout_path }}
           sparse-checkout: ${{ inputs.checkout_files }}
 
       - name: Set Timezone
@@ -64,8 +64,6 @@ jobs:
       - name: Run build.py
         timeout-minutes: 2
         run: |
-          ls
-          ls cahce
           ls cahce/${{ inputs.lang }}
           pip install --upgrade pip
           pip install -r requirements.txt
