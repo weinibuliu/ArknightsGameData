@@ -85,7 +85,7 @@ jobs:
               assets/ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip
               assets/ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip
             body: |
-             zh_CN: ${{ needs.zh_CN.outputs.ver }}
-             en_US: ${{ needs.en_US.outputs.ver }}
-             ja_JP: ${{ needs.ja_JP.outputs.ver }}
-             ko_KR: ${{ needs.ko_KR.outputs.ver }}
+             - zh_CN: ${{ needs.zh_CN.outputs.ver }}
+             - en_US: ${{ needs.en_US.outputs.ver }}
+             - ja_JP: ${{ needs.ja_JP.outputs.ver }}
+             - ko_KR: ${{ needs.ko_KR.outputs.ver }}
