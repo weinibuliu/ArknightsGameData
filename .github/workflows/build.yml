@@ -10,10 +10,13 @@ on:
         - "src/**"
         - "build.py"
 
-
     schedule:
-      - cron: '30 8 * * *'
       - cron: '30 2 * * *'
+      - cron: '30 8 * * *'
+      - cron: '30 1 * * *'
+      - cron: '30 7 * * *'
+      - cron: '30 17 * * *'
+      - cron: '30 23 * * *'
 
 jobs:
     zh_CN:
