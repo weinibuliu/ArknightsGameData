@@ -58,10 +58,10 @@ jobs:
         - name: Create Zip
           run: |
             cd assets
-            zip -q zh_CN_${{ needs.zh_CN.outputs.timestamp }}.zip zh_CN_${{ needs.zh_CN.outputs.timestamp }}/*
-            zip -q en_US_${{ needs.zh_CN.outputs.timestamp }}.zip en_US_${{ needs.zh_CN.outputs.timestamp }}/*
-            zip -q ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip ja_JP_${{ needs.zh_CN.outputs.timestamp }}/*
-            zip -q ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip ko_KR_${{ needs.zh_CN.outputs.timestamp }}/*
+            zip -r -q zh_CN_${{ needs.zh_CN.outputs.timestamp }}.zip zh_CN_${{ needs.zh_CN.outputs.timestamp }}/*
+            zip -r -q en_US_${{ needs.zh_CN.outputs.timestamp }}.zip en_US_${{ needs.zh_CN.outputs.timestamp }}/*
+            zip -r -q ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip ja_JP_${{ needs.zh_CN.outputs.timestamp }}/*
+            zip -r -q ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip ko_KR_${{ needs.zh_CN.outputs.timestamp }}/*
 
         - name: Create Release
           uses: softprops/action-gh-release@v2.1.0

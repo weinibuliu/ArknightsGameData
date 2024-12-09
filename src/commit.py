@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from github import Github
 
 until = datetime.now()
-since = until - timedelta(30)
+since = until - timedelta(15)
 
 repo = Github().get_repo("Kengxxiao/ArknightsGameData_YoStar")
 
@@ -18,7 +18,6 @@ def get_commit_msg(lang: str) -> str:
         since=since,
         until=until,
     ).get_page(0)
-
     for commit in commits:
         msg = commit.commit.message
         if flag in msg:
