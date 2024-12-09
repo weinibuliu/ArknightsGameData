@@ -60,7 +60,7 @@ jobs:
         - name: Upload Release Artifact
           uses: actions/upload-artifact@v4.4.1
           with:
-            name: ${{ inputs.lang }}_${{ inputs.timestamp }}
+            name: ${{ inputs.lang }}-${{ inputs.timestamp }}
             path: build/*
 
         outputs:

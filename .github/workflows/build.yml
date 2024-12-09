@@ -64,24 +64,24 @@ jobs:
             mkdir -p zh_CN && mkdir -p en_US && mkdir -p ja_JP && mkdir -p ko_KR && cd ..
 
             cd assets
-            cd zh_CN_${{ needs.zh_CN.outputs.timestamp }}
-            zip -r -q zh_CN_${{ needs.zh_CN.outputs.timestamp }}.zip .
-            mv zh_CN_${{ needs.zh_CN.outputs.timestamp }}.zip ..
+            cd zh_CN-${{ needs.zh_CN.outputs.timestamp }}
+            zip -r -q zh_CN-${{ needs.zh_CN.outputs.timestamp }}.zip .
+            mv zh_CN-${{ needs.zh_CN.outputs.timestamp }}.zip ..
             mv -f version ../../version/zh_CN/
 
-            cd ../en_US_${{ needs.zh_CN.outputs.timestamp }}
-            zip -r -q en_US_${{ needs.zh_CN.outputs.timestamp }}.zip .
-            mv en_US_${{ needs.zh_CN.outputs.timestamp }}.zip ..
+            cd ../en_US-${{ needs.zh_CN.outputs.timestamp }}
+            zip -r -q en_US-${{ needs.zh_CN.outputs.timestamp }}.zip .
+            mv en_US-${{ needs.zh_CN.outputs.timestamp }}.zip ..
             mv -f version ../../version/en_US/
 
-            cd ../ja_JP_${{ needs.zh_CN.outputs.timestamp }}
-            zip -r -q ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip .
-            mv ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip ..
+            cd ../ja_JP-${{ needs.zh_CN.outputs.timestamp }}
+            zip -r -q ja_JP-${{ needs.zh_CN.outputs.timestamp }}.zip .
+            mv ja_JP-${{ needs.zh_CN.outputs.timestamp }}.zip ..
             mv -f version ../../version/ja_JP/
 
-            cd ../ko_KR_${{ needs.zh_CN.outputs.timestamp }}
-            zip -r -q ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip .
-            mv ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip ..
+            cd ../ko_KR-${{ needs.zh_CN.outputs.timestamp }}
+            zip -r -q ko_KR-${{ needs.zh_CN.outputs.timestamp }}.zip .
+            mv ko_KR-${{ needs.zh_CN.outputs.timestamp }}.zip ..
             mv -f version ../../version/ko_KR/
 
         - name: Commit zh_CN Version
@@ -126,10 +126,10 @@ jobs:
             tag_name: ${{ needs.zh_CN.outputs.timestamp }}
             make_latest: true
             files: |
-              assets/zh_CN_${{ needs.zh_CN.outputs.timestamp }}.zip
-              assets/en_US_${{ needs.zh_CN.outputs.timestamp }}.zip
-              assets/ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip
-              assets/ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip
+              assets/zh_CN-${{ needs.zh_CN.outputs.timestamp }}.zip
+              assets/en_US-${{ needs.zh_CN.outputs.timestamp }}.zip
+              assets/ja_JP-${{ needs.zh_CN.outputs.timestamp }}.zip
+              assets/ko_KR-${{ needs.zh_CN.outputs.timestamp }}.zip
             body: |
              - zh_CN: ${{ needs.zh_CN.outputs.ver }}
              - en_US: ${{ needs.en_US.outputs.ver }}
