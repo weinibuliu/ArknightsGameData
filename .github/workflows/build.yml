@@ -108,7 +108,11 @@ jobs:
             mkdir -p zh_CN && mkdir -p en_US && mkdir -p ja_JP && mkdir -p ko_KR && cd ..
 
             cd assets
-            cd zh_CN-${{ needs.meta.outputs.timestamp }} && mv zh_CN-version ..
+            cd avatar-zh_CN-${{ needs.meta.outputs.timestamp }}
+            zip -r -q avatar-zh_CN-${{ needs.meta.outputs.timestamp }}.zip .
+            move avatar-zh_CN-${{ needs.meta.outputs.timestamp }}.zip ..
+
+            cd ../zh_CN-${{ needs.meta.outputs.timestamp }} && mv zh_CN-version ..
             zip -r -q zh_CN-${{ needs.meta.outputs.timestamp }}.zip .
             mv zh_CN-${{ needs.meta.outputs.timestamp }}.zip ..
             mv -f version ../../version/zh_CN/

@@ -6,21 +6,21 @@
 This repository aims to provide smaller and more targeted Arknights data and resource files for use in other scenarios. For details on the using data, see **[Data Source](#数据来源--data-source)** .
 
 ## 更新时间 | Update Time
-仓库将于 **UTC-7 | UTC+8 | UTC+9** 的 **10:30** 与 **16:30** 运行工作流，检测是否存在更新（通过比对 `version` 文件内容是否一致）。如检测到更新，将创建 **[Release](https://github.com/weinibuliu/ArknightsGameData/releases)** 。这意味着仓库数据可能 ***不会*** 及时跟进计划外的修复（如临时闪断更新）。如您对数据时效有较高要求，建议 **fork** 仓库后自行修改工作流。
+仓库将于 **UTC-7 | UTC+8 | UTC+9** 的 **10:30** 与 **16:30** 运行工作流，检测是否存在更新（通过比对 `version` 文件内容是否一致）。如检测到更新，将创建 **[Release](https://github.com/weinibuliu/ArknightsGameData/releases)** 。这意味着仓库数据 ***不会*** 立即跟进计划外的修复（如临时闪断更新）。如您对数据时效有较高要求，建议 **fork** 仓库后自行修改工作流。
 
 >[!WARNING]
 仓库使用 **[Pygithub](https://github.com/PyGithub/PyGithub)** 获取 commit message ，如请求过于频繁，可能会触发 Github API 相关限制。请控制请求频率。
 
-The repository will run the workflow at **10:30** and **16:30** on **UTC-7 | UTC+8 | UTC+9** to detect whether there are any updates (by comparing the contents of the `version` file to see if they are consistent). If an update is detected, a **[Release](https://github.com/weinibuliu/ArknightsGameData/releases)** will be created. This means that the repository data may ***not*** keep up with unplanned fixes (such as temporary flash updates) in a timely manner. If you have high requirements for data timeliness, it is recommended to **fork** the repository and modify the workflow yourself.
+The repository will run the workflow at **10:30** and **16:30** on **UTC-7 | UTC+8 | UTC+9** to detect whether there are any updates (by comparing the contents of the `version` file to see if they are consistent). If an update is detected, a **[Release](https://github.com/weinibuliu/ArknightsGameData/releases)** will be created. This means that the repository datas ***don't*** keep up with unplanned fixes (such as temporary flash updates) immediately. If you have high requirements for data timeliness, it is recommended to **fork** the repository and modify the workflow yourself.
 
 >[!WARNING]
 The repository uses **[Pygithub](https://github.com/PyGithub/PyGithub)** to get commit messages. If the request is too frequent, it may trigger Github API related restrictions. Please control the request frequency.
 
 ## 文件列表 | Files List
-- version
-- avatar (干员头像)
-- character_table.json（干员信息）
-- char_classisy (经过分类的干员信息)
+- `version`
+- `avatar` (干员头像)
+- `character_table.json`（干员信息）
+- `char_classisy` (经过分类的干员信息)
 
 ## 数据来源 | Data Source
 本仓库使用了以下仓库的数据，感谢其维护者与贡献者的贡献。
