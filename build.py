@@ -11,13 +11,11 @@ from src import cwd, build_path, cache_path
 from src.commit import get_version
 
 lang = sys.argv[1]
+print(f"Language: {lang}")
 
 character.run(lang)
 char_classisy.run(lang)
-if lang == "zh_CN":
-    avatar.run(lang)
-else:
-    print("Skip to get avatar")
+avatar.run(lang)
 
 # 写入版本信息
 ver = version = existing_version = current_version = None
