@@ -9,7 +9,7 @@ on:
 
       outputs:
         timestamp:
-          value: ${{ env.TIMESTAMP }}
+          value: ${{ jobs.Build.outputs.timestamp }}
         release:
           value: ${{ jobs.Build.outputs.RELEASE }}
 
