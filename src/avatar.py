@@ -29,7 +29,10 @@ def run(lang: str):
             shutil.copyfile(a_path, Path(b_ava_path, a_path.name))
             num += 1
 
-    print(f"Done: Avatar ({num})")
+    if num == 0:
+        raise RuntimeError("Fail to get avatar.")
+    else:
+        print(f"Done: Avatar ({num})")
 
 
 if __name__ == "__main":
