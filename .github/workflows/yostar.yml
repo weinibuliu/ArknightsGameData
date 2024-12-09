@@ -66,13 +66,11 @@ jobs:
           if: ${{ env.RELEASE == 'true' }}
           uses: EndBug/add-and-commit@v9.1.4
           with:
-            fetch: true
             pull: '--autostash'
             author_name: github-actions
             author_email: github-actions[bot]@users.noreply.github.com
             message: '[${{ inputs.lang }}] ${{ env.VER }}'
             add: 'version/${{ inputs.lang }}/version'
-            tag_push: '--force'
 
         outputs:
           release: ${{ env.RELEASE }}
