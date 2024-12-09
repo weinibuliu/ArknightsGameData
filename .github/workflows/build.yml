@@ -28,7 +28,7 @@ jobs:
           timestamp: ${{ needs.zh_CN.outputs.timestamp }}
 
     ja_JP:
-        needs: [zh_CN,en_US]
+        needs: [zh_CN]
         uses: ./.github/workflows/yostar.yml
         with:
           lang: ja_JP
@@ -36,7 +36,7 @@ jobs:
           timestamp: ${{ needs.zh_CN.outputs.timestamp }}
 
     ko_KR:
-        needs: [zh_CN,ja_JP]
+        needs: [zh_CN]
         uses: ./.github/workflows/yostar.yml
         with:
           lang: ko_KR
