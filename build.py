@@ -26,9 +26,9 @@ existing_version_path = Path(cwd, f"version/{lang}/version")
 if lang == "zh_CN":
     with open(f"{cache_path}/{lang}/version", "r", encoding="utf-8") as cv:
         current_version = cv.readline().replace("\n", "")
-        print(f"Current Version: {current_version}")
 else:
     current_version = get_version(lang)
+print(f"Current Version: {current_version}")
 
 with open(f"{build_path}/version", "w", encoding="utf-8") as vs:
     if existing_version_path.exists():

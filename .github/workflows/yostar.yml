@@ -47,6 +47,12 @@ jobs:
               mkdir version/${{ inputs.lang }} -p
               python build.py ${{ inputs.lang }}
 
+        - name: Download Artifacts
+          uses: actions/download-artifact@v4.1.8
+          with:
+            name: avatar_${{ inputs.timestamp }}
+            path: build
+
         - name: Upload Release Artifact
           uses: actions/upload-artifact@v4.4.1
           with:
