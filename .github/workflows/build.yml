@@ -10,6 +10,7 @@ on:
         - "src/**"
         - "version/**"
         - "build.py"
+        - "meta.py"
 
     schedule:
       - cron: '30 2 * * *'

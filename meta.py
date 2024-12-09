@@ -1,3 +1,5 @@
+# Get Timestamp and read config.json
+
 import time
 import json
 import subprocess
