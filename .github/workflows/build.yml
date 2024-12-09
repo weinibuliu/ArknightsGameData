@@ -65,7 +65,7 @@ jobs:
           checkout_files: en_US/gamedata/excel/character_table.json
           lang: en_US
           timezone: America/New_York
-          timestamp: ${{ needs.zh_CN.outputs.timestamp }}
+          timestamp: ${{ needs.meta.outputs.timestamp }}
 
     ja_JP:
         needs: [meta,zh_CN]
@@ -75,7 +75,7 @@ jobs:
           checkout_files: ja_JP/gamedata/excel/character_table.json
           lang: ja_JP
           timezone: Asia/Tokyo
-          timestamp: ${{ needs.zh_CN.outputs.timestamp }}
+          timestamp: ${{ needs.meta.outputs.timestamp }}
 
     ko_KR:
         needs: [meta,zh_CN]
@@ -85,7 +85,7 @@ jobs:
           checkout_files: ko_KR/gamedata/excel/character_table.json
           lang: ko_KR
           timezone: Asia/Seoul
-          timestamp: ${{ needs.zh_CN.outputs.timestamp }}
+          timestamp: ${{ needs.meta.outputs.timestamp }}
 
     Release:
         needs: [meta,zh_CN,en_US,ja_JP,ko_KR]
@@ -106,24 +106,24 @@ jobs:
             mkdir -p zh_CN && mkdir -p en_US && mkdir -p ja_JP && mkdir -p ko_KR && cd ..
 
             cd assets
-            cd zh_CN-${{ needs.zh_CN.outputs.timestamp }} && mv version-zh_CN ..
-            zip -r -q zh_CN-${{ needs.zh_CN.outputs.timestamp }}.zip .
-            mv zh_CN-${{ needs.zh_CN.outputs.timestamp }}.zip ..
+            cd zh_CN-${{ needs.meta.outputs.timestamp }} && mv version-zh_CN ..
+            zip -r -q zh_CN-${{ needs.meta.outputs.timestamp }}.zip .
+            mv zh_CN-${{ needs.meta.outputs.timestamp }}.zip ..
             mv -f version ../../version/zh_CN/
 
-            cd ../en_US-${{ needs.zh_CN.outputs.timestamp }} && mv version-en_US ..
-            zip -r -q en_US-${{ needs.zh_CN.outputs.timestamp }}.zip .
-            mv en_US-${{ needs.zh_CN.outputs.timestamp }}.zip ..
+            cd ../en_US-${{ needs.meta.outputs.timestamp }} && mv version-en_US ..
+            zip -r -q en_US-${{ needs.meta.outputs.timestamp }}.zip .
+            mv en_US-${{ needs.meta.outputs.timestamp }}.zip ..
             mv -f version ../../version/en_US/
 
-            cd ../ja_JP-${{ needs.zh_CN.outputs.timestamp }} && mv version-ja_JP ..
-            zip -r -q ja_JP-${{ needs.zh_CN.outputs.timestamp }}.zip .
-            mv ja_JP-${{ needs.zh_CN.outputs.timestamp }}.zip ..
+            cd ../ja_JP-${{ needs.meta.outputs.timestamp }} && mv version-ja_JP ..
+            zip -r -q ja_JP-${{ needs.meta.outputs.timestamp }}.zip .
+            mv ja_JP-${{ needs.meta.outputs.timestamp }}.zip ..
             mv -f version ../../version/ja_JP/
 
-            cd ../ko_KR-${{ needs.zh_CN.outputs.timestamp }} && mv version-ko_KR ..
-            zip -r -q ko_KR-${{ needs.zh_CN.outputs.timestamp }}.zip .
-            mv ko_KR-${{ needs.zh_CN.outputs.timestamp }}.zip ..
+            cd ../ko_KR-${{ needs.meta.outputs.timestamp }} && mv version-ko_KR ..
+            zip -r -q ko_KR-${{ needs.meta.outputs.timestamp }}.zip .
+            mv ko_KR-${{ needs.meta.outputs.timestamp }}.zip ..
             mv -f version ../../version/ko_KR/
 
         - name: Commit zh_CN Version
@@ -165,13 +165,13 @@ jobs:
         - name: Create Release
           uses: softprops/action-gh-release@v2.1.0
           with:
-            tag_name: ${{ needs.zh_CN.outputs.timestamp }}
+            tag_name: ${{ needs.meta.outputs.timestamp }}
             make_latest: true
             files: |
-              assets/zh_CN-${{ needs.zh_CN.outputs.timestamp }}.zip
-              assets/en_US-${{ needs.zh_CN.outputs.timestamp }}.zip
-              assets/ja_JP-${{ needs.zh_CN.outputs.timestamp }}.zip
-              assets/ko_KR-${{ needs.zh_CN.outputs.timestamp }}.zip
+              assets/zh_CN-${{ needs.meta.outputs.timestamp }}.zip
+              assets/en_US-${{ needs.meta.outputs.timestamp }}.zip
+              assets/ja_JP-${{ needs.meta.outputs.timestamp }}.zip
+              assets/ko_KR-${{ needs.meta.outputs.timestamp }}.zip
               assets/version-zh_CN
               assets/version-en_US
               assets/version-ja_JP
