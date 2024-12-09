@@ -70,7 +70,7 @@ jobs:
             zip -r -q ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip .
             mv ja_JP_${{ needs.zh_CN.outputs.timestamp }}.zip ..
 
-            cd ../ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip .
+            cd ../ko_KR_${{ needs.zh_CN.outputs.timestamp }}
             zip -r -q ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip .
             mv ko_KR_${{ needs.zh_CN.outputs.timestamp }}.zip ..
 
