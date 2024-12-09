@@ -8,16 +8,16 @@ on:
           type: string
           default: Kengxxiao/ArknightsGameData_YoStar
 
+        checkout_path:
+          required: false
+          type: string
+          default: cache
+
         checkout_files:
           required: false
           type: string
           default: |
             ${{ inputs.lang }}/gamedata/excel/character_table.json
-
-        checkout_path:
-          required: false
-          type: string
-          default: cache
 
         lang:
           required: true

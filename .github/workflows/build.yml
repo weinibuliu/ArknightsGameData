@@ -49,10 +49,10 @@ jobs:
         uses: ./.github/workflows/data.yml
         with:
           checkout_repo: yuanyan3060/ArknightsGameResource
+          checkout_path: cache/zh_CN
           checkout_files: |
             avatar
             gamedata/excel/character_table.json
-          checkout_path: cache/zh_CN
           lang: zh_CN
           timezone: Asia/Shanghai
           timestamp: ${{ needs.meta.outputs.timestamp }}
