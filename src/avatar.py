@@ -15,7 +15,6 @@ def run(lang: str):
     b_ava_path = Path(build_path, "avatar")
 
     avatar_paths = [path for path in c_ava_path.rglob("*")]
-    print(f"Debug: avatar_paths_len: {len(avatar_paths)}")
 
     num = 0
     chars_list = []
