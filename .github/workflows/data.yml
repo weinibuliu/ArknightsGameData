@@ -42,7 +42,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4.2.1
 
-      - name: Checkout ArknightsGameData
+      - name: Checkout ${{ inputs.checkout_repo }}
         uses: actions/checkout@v4.2.1
         with:
           repository: ${{ inputs.checkout_repo }}
