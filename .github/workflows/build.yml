@@ -40,10 +40,6 @@ jobs:
         timestamp: ${{ env.timestamp }}
         enable_workflow: ${{ env.enable_workflow }}
         create_release: ${{ env.create_release }}
-        zh_CN: ${{ env.zh_CN }}
-        en_US: ${{ env.en_US }}
-        ja_JP: ${{ env.ja_JP }}
-        ko_KR: ${{ env.ko_KR }}
 
     zh_CN:
         needs: meta
@@ -61,7 +57,6 @@ jobs:
 
     en_US:
         needs: [meta,zh_CN]
-        if: ${{ needs.meta.outputs.en_US == 'true' }}
         uses: ./.github/workflows/data.yml
         with:
           checkout_files: en_US/gamedata/excel/character_table.json
@@ -71,7 +66,6 @@ jobs:
 
     ja_JP:
         needs: [meta,zh_CN]
-        if: ${{ needs.meta.outputs.ja_JP == 'true' }}
         uses: ./.github/workflows/data.yml
         with:
           checkout_files: ja_JP/gamedata/excel/character_table.json
@@ -81,7 +75,6 @@ jobs:
 
     ko_KR:
         needs: [meta,zh_CN]
-        if: ${{ needs.meta.outputs.ko_KR == 'true' }}
         uses: ./.github/workflows/data.yml
         with:
           checkout_files: ko_KR/gamedata/excel/character_table.json
