@@ -62,6 +62,7 @@ jobs:
         if: ${{ needs.meta.outputs.en_US == 'true' }}
         uses: ./.github/workflows/data.yml
         with:
+          checkout_files: en_US/gamedata/excel/character_table.json
           lang: en_US
           timezone: America/New_York
           timestamp: ${{ needs.zh_CN.outputs.timestamp }}
@@ -71,6 +72,7 @@ jobs:
         if: ${{ needs.meta.outputs.ja_JP == 'true' }}
         uses: ./.github/workflows/data.yml
         with:
+          checkout_files: ja_JP/gamedata/excel/character_table.json
           lang: ja_JP
           timezone: Asia/Tokyo
           timestamp: ${{ needs.zh_CN.outputs.timestamp }}
@@ -80,6 +82,7 @@ jobs:
         if: ${{ needs.meta.outputs.ko_KR == 'true' }}
         uses: ./.github/workflows/data.yml
         with:
+          checkout_files: ko_KR/gamedata/excel/character_table.json
           lang: ko_KR
           timezone: Asia/Seoul
           timestamp: ${{ needs.zh_CN.outputs.timestamp }}

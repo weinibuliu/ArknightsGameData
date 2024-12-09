@@ -14,10 +14,8 @@ on:
           default: cache
 
         checkout_files:
-          required: false
+          required: true
           type: string
-          default: |
-            ${{ inputs.lang }}/gamedata/excel/character_table.json
 
         lang:
           required: true
@@ -48,7 +46,7 @@ jobs:
         uses: actions/checkout@v4.2.1
         with:
           repository: ${{ inputs.checkout_repo }}
-          path: cache/zh_CN/
+          path: ${{ inputs.checkout_path }}
           sparse-checkout: ${{ inputs.checkout_files }}
 
       - name: Set Timezone
