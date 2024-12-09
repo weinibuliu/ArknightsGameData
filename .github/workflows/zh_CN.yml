@@ -42,7 +42,7 @@ jobs:
           run: |
               pip install --upgrade pip
               pip install -r requirements.txt
-              mkdir version/zh_CN -p
+              mkdir -p version/zh_CN
               python timestamp.py
               python build.py zh_CN
 

@@ -54,7 +54,7 @@ jobs:
           run: |
               pip install --upgrade pip
               pip install -r requirements.txt
-              mkdir version/${{ inputs.lang }} -p
+              mkdir -p version/${{ inputs.lang }}
               python build.py ${{ inputs.lang }}
 
         - name: Upload Avatar Artifact
