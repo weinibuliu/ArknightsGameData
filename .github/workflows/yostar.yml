@@ -20,7 +20,7 @@ on:
 
 jobs:
     Build:
-        runs-on: ubuntu-latest
+        runs-on: macos-latest
         steps:
         - name: Checkout Code
           uses: actions/checkout@v4.2.1
@@ -37,7 +37,7 @@ jobs:
         - name: Set Timezone
           uses: szenius/set-timezone@v1.1
           with:
-            timezoneLinux: ${{ inputs.timezone }}
+            timezoneMacos: ${{ inputs.timezone }}
 
         - name: Setup Python
           uses: actions/setup-python@v5.2.0
