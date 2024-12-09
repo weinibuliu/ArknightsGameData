@@ -1,3 +1,5 @@
+name: zh_CN
+
 on:
     workflow_call:
       inputs:
