@@ -75,10 +75,11 @@ jobs:
           mkdir -p version/${{ inputs.lang }}
           python build.py ${{ inputs.lang }} ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload Avatar Artifact
+      - name: Upload zh_CN Avatar Artifact
+        if: ${{ inputs.lang == 'zh_CN' }}
         uses: actions/upload-artifact@v4.4.1
         with:
-          name: ${{ inputs.lang }}-avatar-${{ inputs.timestamp }}
+          name: zh_CN-avatar-${{ inputs.timestamp }}
           path: |
             build/avatar/*
 
