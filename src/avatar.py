@@ -4,8 +4,7 @@ import shutil
 from pathlib import Path
 
 
-def run(lang: str = "zh_CN"):
-
+def run(lang: str):
     build_path = Path(Path.cwd(), "build")
     cache_path = Path(Path.cwd(), "cache", lang)
 

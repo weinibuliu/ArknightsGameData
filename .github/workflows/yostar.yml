@@ -44,18 +44,18 @@ jobs:
           with:
             python-version: '3.12'
 
+        - name: Download Avatar
+          uses: actions/download-artifact@v4.1.8
+          with:
+            name: zh_CN-only-avatar-${{ inputs.timestamp }}
+            path: build/avatar
+
         - name: Run build.py
           run: |
               pip install --upgrade pip
               pip install -r requirements.txt
               mkdir version/${{ inputs.lang }} -p
               python build.py ${{ inputs.lang }}
-
-        - name: Download Avatar
-          uses: actions/download-artifact@v4.1.8
-          with:
-            name: zh_CN-only-avatar-${{ inputs.timestamp }}
-            path: build/avatar
 
         - name: Upload Avatar Artifact
           uses: actions/upload-artifact@v4.4.1
